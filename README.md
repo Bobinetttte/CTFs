@@ -1,4 +1,2 @@
 # CTFs
-All my CTFs notes fvdghgh
-asdsadasd
-sd
+All my CTFs notes
