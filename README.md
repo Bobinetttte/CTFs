@@ -1,2 +1,2 @@
 # CTFs
-All my CTFs notes
+All my CTFs notes on Obsidian
