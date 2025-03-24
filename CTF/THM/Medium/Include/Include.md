@@ -289,10 +289,11 @@ We have the first flag.
 `THM{!50_55Rf_1S_d_k3Y??!}`
 
 
-When we load the `dashboard.php` 
+When we load the `dashboard.php` we can see a possible #fileInclusion. 
 
 ![[Pasted image 20250324191949.png]]
 
+So let's open #burpsuite.
 ## 5. **Installation
 
 
