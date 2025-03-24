@@ -5,7 +5,7 @@
 **Difficulty :** Medium
 **Name :** Whats Your Name?
 **IP** : 
-**Objectives :** Get user and root flags
+**Objectives :** Get the accessing the moderator account flag and the admin panel flag
 **OS :** ?
 
 ##### **Conclusion**
