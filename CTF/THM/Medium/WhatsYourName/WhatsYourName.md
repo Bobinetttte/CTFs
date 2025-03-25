@@ -53,10 +53,47 @@ One we register we have a login page but when we want to login it's say "User no
 
 But the subdomain doesn't work.
 
+When we enter admin instead of Bobinette it's said "Invalid email or password".
+
+We find some pages with #gobuster 
+
+Output :
+
+```BASH
+/.php                 (Status: 403) [Size: 277]
+/.html                (Status: 403) [Size: 277]
+/index.php            (Status: 200) [Size: 1797]
+/login.php            (Status: 200) [Size: 1785]
+/register.php         (Status: 200) [Size: 2188]
+/admin.php            (Status: 403) [Size: 0]
+/upload.php           (Status: 403) [Size: 0]
+/logout.php           (Status: 200) [Size: 154]
+/mod.php              (Status: 403) [Size: 0]
+/dashboard.php        (Status: 403) [Size: 0]
+```
+
+
+
 On the port 8081 we have nothin execpt a message who let know us that there is a login.php page.
 
 ![[Pasted image 20250325190550.png]]
 
+We find some pages with #gobuster 
+
+Output :
+
+```BASH
+/.php                 (Status: 403) [Size: 277]
+/.html                (Status: 403) [Size: 277]
+/index.php            (Status: 200) [Size: 1797]
+/login.php            (Status: 200) [Size: 1785]
+/register.php         (Status: 200) [Size: 2188]
+/admin.php            (Status: 403) [Size: 0]
+/upload.php           (Status: 403) [Size: 0]
+/logout.php           (Status: 200) [Size: 154]
+/mod.php              (Status: 403) [Size: 0]
+/dashboard.php        (Status: 403) [Size: 0]
+```
 
 ## 2. **Weaponization
 
