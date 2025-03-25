@@ -11,7 +11,7 @@
 ##### **Conclusion**
 **Time :** 
 	**Start :** 25.03.2025 18:55
-	**Break at/to :** 
+	**Break at/to :** 25.03.2025 18:55 / 
 	**Finish :** 
 **Satisfaction :**  
 ### 1. **Reconnaissance
@@ -49,7 +49,9 @@ On the port 80 we have this sitemap and we have the possibilitie to pre-register
 
 We can try to register.
 One we register we have a login page but when we want to login it's say "User not verified" but we also have this :
+![[Pasted image 20250325191031.png]]
 
+But the subdomain doesn't work.
 
 On the port 8081 we have nothin execpt a message who let know us that there is a login.php page.
 
