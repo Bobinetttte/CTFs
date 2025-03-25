@@ -7,7 +7,7 @@
 **IP** : 
 **Objectives :** Get the accessing the moderator account flag and the admin panel flag
 **OS :** ?
-test
+
 ##### **Conclusion**
 **Time :** 
 	**Start :** 
