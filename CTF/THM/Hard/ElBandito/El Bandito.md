@@ -9,7 +9,7 @@
 ##### **Conclusion**
 **Time :** 
 	**Start :** 28.03.2025 18:10
-	**Break at/to :** 
+	**Break at/to :** 28.03.2025 19:27
 	**Finish :** 
 **Satisfaction :**  
 ### 1. **Reconnaissance
@@ -204,7 +204,6 @@ Starting gobuster in directory enumeration mode
 /envelope_small.htm   (Status: 403) [Size: 146]
 ```
 
-We want the `admin.html`
 
 
 Port `80`
