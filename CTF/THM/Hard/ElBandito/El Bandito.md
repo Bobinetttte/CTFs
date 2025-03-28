@@ -204,7 +204,7 @@ Starting gobuster in directory enumeration mode
 /envelope_small.htm   (Status: 403) [Size: 146]
 ```
 
-We want the `admin.php`
+We want the `admin.html`
 
 
 Port `80`
