@@ -106,7 +106,22 @@ There is the following ports :
 8080
 ```
 
-So it's a web app with HTTP1.1
+Port `8080`
+![[Pasted image 20250328182102.png]]
+![[Pasted image 20250328182316.png]]
+![[Pasted image 20250328182920.png]]
+
+
+Port `80`
+![[Pasted image 20250328182120.png]]
+![[Pasted image 20250328182607.png]]
+
+
+
+Port `631`
+![[Pasted image 20250328182141.png]]
+![[Pasted image 20250328182743.png]]
+
 
 
 ## 2. **Weaponization
