@@ -2,14 +2,14 @@
 
 **Difficulty :** #Hard
 **Name :** El Bandito
-**IP** : 10.10.66.64
+**IP** : 10.10.66.64 | 10.10.5.59
 **Objectives :** Get the first web flag and the second web flag.
 **OS :** ?
 
 ##### **Conclusion**
 **Time :** 
 	**Start :** 28.03.2025 18:10
-	**Break at/to :** 28.03.2025 19:27
+	**Break at/to :** 28.03.2025 19:27 / 29.03.2025 16:05
 	**Finish :** 
 **Satisfaction :**  
 ### 1. **Reconnaissance
