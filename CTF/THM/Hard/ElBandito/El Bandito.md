@@ -7,11 +7,11 @@
 **OS :** ?
 
 ##### **Conclusion**
-**Time :** 
+**Time :** 2h09
 	**Start :** 28.03.2025 18:10
 	**Break at/to :** 28.03.2025 19:27 / 29.03.2025 16:11
-	**Finish :** 
-**Satisfaction :**  
+	**Finish :** 29.03.2025 17:03
+**Satisfaction :**  7/10 Because I use a writeup but it's my first hard.
 ### 1. **Reconnaissance
 
 We start with an #nmap scan :
@@ -464,7 +464,7 @@ Adn we go to `/getMessages`
 We have this :
 THM{\u00a1!\u00a1RIGHT_ASCENSION_12h_36m_25.46s!\u00a1!}
 
-Our flag is : `THM{¡!\u00a1RIGHT_ASCENSION_12h_36m_25.46s!\u00a1!}`
+Our flag is : `THM{¡!¡RIGHT_ASCENSION_12h_36m_25.46s!¡!}`
 ## 5. **Installation
 
 ## 6. **Command and Control
