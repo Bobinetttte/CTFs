@@ -11,7 +11,7 @@
 ##### **Conclusion**
 **Time :** 
 	**Start :** 04.04.2025 / 18:39
-	**Break at/to :** 04.04.2025 / 19:17
+	**Break at/to :** 04.04.2025 / 19:17 | 06.04.2025 / 19:
 	**Finish :** 
 **Satisfaction :**  
 ### 1. **Reconnaissance
@@ -103,6 +103,7 @@ When I enter /admin I got an alert for login and when I click cancel Its sen me 
 
 We can see that we are on FreePBX 2.8.1.4
 We find the CVE-2010-3490
+The CVE is not working.
 
 ## 2. **Weaponization
 
