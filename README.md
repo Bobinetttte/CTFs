@@ -43,16 +43,11 @@ Each CTF follows the same format:
   [Gobuster](https://www.kali.org/tools/gobuster/) – For identifying differents pages on a website.
 
 - **Exploitation Tools:**  
-  [Tool C](https://example.com) – For automating or crafting exploits.
+  [BurpSuite](https://portswigger.net/burp) – For analysts of web requests and http/https operations.
 
 - **Guides and Tutorials:**  
-  [Cyber Kill Chain Guide](https://example.com) – Detailed explanation and practical application of the methodology.
+  [Cyber Kill Chain](https://en.wikipedia.org/wiki/Cyber_kill_chain) – Detailed explanation and practical application of the methodology.
 
----
-
-## Motivation
-
-"Continuously improve and push the limits of digital security, one CTF at a time."
 
 ---
 
