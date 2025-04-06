@@ -9,11 +9,11 @@
 **OS :** Linux
 
 ##### **Conclusion**
-**Time :** 
+**Time :** 2.19
 	**Start :** 04.04.2025 / 18:39
 	**Break at/to :** 04.04.2025 / 19:17 | 06.04.2025 / 19:30
-	**Finish :** 
-**Satisfaction :**  
+	**Finish :** 06.04.2025 / 20:51
+**Satisfaction :**  8/10 Because I start with the adventure mode but I use the guided mode for a hint.
 ### 1. **Reconnaissance
 
 We start with an #nmap scan :
@@ -148,10 +148,39 @@ So we use :
 
 `ssh -oKexAlgorithms=+diffie-hellman-group14-sha1 -oHostKeyAlgorithms=+ssh-rsa admin@10.129.229.183`
 
-Output
+Output : ```admin@10.129.229.183's password: 
+Permission denied, please try again.
+admin@10.129.229.183's password: 
+Permission denied, please try again.
+admin@10.129.229.183's password: 
+admin@10.129.229.183: Permission denied (publickey,gssapi-with-mic,password).```
+
+So we use : `ssh -oKexAlgorithms=+diffie-hellman-group14-sha1 -oHostKeyAlgorithms=+ssh-rsa root@10.129.229.183`
+
+And it's work.
 
 ## 5. **Installation
 
 ## 6. **Command and Control
 
 ## 7. **Actions on Objectives
+
+```BASH
+[root@beep ~]# ls
+anaconda-ks.cfg  elastix-pr-2.2-1.i386.rpm  install.log  install.log.syslog  postnochroot  root.txt  webmin-1.570-1.noarch.rpm
+[root@beep ~]# cat root.txt 
+9d8adf4c79a142b7d6eb73b1fc6f40df
+[root@beep ~]# pwd
+/root
+[root@beep ~]# cd /home/
+[root@beep home]# ls
+fanis  spamfilter
+[root@beep home]# cd fanis/
+[root@beep fanis]# ls
+user.txt
+[root@beep fanis]# cd user.txt 
+-bash: cd: user.txt: Not a directory
+[root@beep fanis]# cat user.txt 
+81f8ae88f828a4b420de617b968d4688
+```
+
