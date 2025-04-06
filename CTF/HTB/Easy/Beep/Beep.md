@@ -11,7 +11,7 @@
 ##### **Conclusion**
 **Time :** 
 	**Start :** 04.04.2025 / 18:39
-	**Break at/to :** 04.04.2025 / 19:17 | 06.04.2025 / 19:
+	**Break at/to :** 04.04.2025 / 19:17 | 06.04.2025 / 19:30
 	**Finish :** 
 **Satisfaction :**  
 ### 1. **Reconnaissance
@@ -105,11 +105,50 @@ We can see that we are on FreePBX 2.8.1.4
 We find the CVE-2010-3490
 The CVE is not working.
 
+So we start to find if some vulnerabilities with elastix exist and we found this :
+![[Pasted image 20250406202904.png]]
+
+
 ## 2. **Weaponization
 
 ## 3. **Delivery
 
 ## 4. **Exploitation
+
+So let's try the #LFI exploit we find with Elatix.
+
+![[Pasted image 20250406203046.png]]
+
+It's working and we have the following informations :
+
+-  DB :
+    
+    - `AMPDBUSER=asteriskuser`
+        
+    - `AMPDBPASS=jEhdIekWmdjE`
+        
+-  **FreePBX** :
+    
+    - `AMPMGRUSER=admin`
+        
+    - `AMPMGRPASS=jEhdIekWmdjE`
+        
+    - `ARI_ADMIN_USERNAME=admin`
+
+![[Pasted image 20250406203824.png]]
+
+Now we want to connect with ssh :
+
+`ssh admin@10.129.229.183`
+
+Output : `Unable to negotiate with 10.129.229.183 port 22: no matching key exchange method found. Their offer: diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1`
+
+
+So we use :
+
+`ssh -oKexAlgorithms=+diffie-hellman-group14-sha1 -oHostKeyAlgorithms=+ssh-rsa admin@10.129.229.183`
+
+Output
 
 ## 5. **Installation
 
