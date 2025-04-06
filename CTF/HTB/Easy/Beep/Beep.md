@@ -6,10 +6,10 @@
 **Name :** Beep
 **IP** : 10.129.229.183
 **Objectives :** Get user and root flags
-**OS :** Linux
+**OS :** #Linux
 
 ##### **Conclusion**
-**Time :** 2.19
+**Time :** 2h19
 	**Start :** 04.04.2025 / 18:39
 	**Break at/to :** 04.04.2025 / 19:17 | 06.04.2025 / 19:30
 	**Finish :** 06.04.2025 / 20:51
