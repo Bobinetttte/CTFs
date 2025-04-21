@@ -77,13 +77,32 @@ Starting gobuster in directory enumeration mode
 
 ![[Pasted image 20250421183007.png]]
 
+![[Pasted image 20250421183246.png]]
 
+On the admin.php page we try admin:nibbles and it's work.
 
+We find a CVE (2015-6967) so let's try
 ## 2. **Weaponization
+
+with #Metasploit 
+
+```BASH
+set RHOSTS 10.129.96.84
+set TARGETURI /nibbleblog/
+set USERNAME admin
+set PASSWORD nibbles
+```
+
+But it's telling us to try manualy.
+
+SO we create image.php
+
+
 
 ## 3. **Delivery
 
 ## 4. **Exploitation
+
 
 ## 5. **Installation
 
