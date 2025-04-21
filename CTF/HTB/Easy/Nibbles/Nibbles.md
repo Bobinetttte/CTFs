@@ -9,11 +9,11 @@
 **OS :** Linux
 
 ##### **Conclusion**
-**Time :** 
+**Time :** 1h17
 	**Start :** 21.04.2025 / 18:13
 	**Break at/to :** 
 	**Finish :** 21.04.2025 / 19:30
-**Satisfaction :**  
+**Satisfaction :**  9/10 
 ### 1. **Reconnaissance
 
 We start with an #nmap scan :
