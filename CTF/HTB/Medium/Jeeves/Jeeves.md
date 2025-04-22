@@ -58,12 +58,18 @@ Progress: 108476 / 220561 (49.18%)
 ![[Pasted image 20250422164215.png]]
 
 
-
 ## 2. **Weaponization
 
 ## 3. **Delivery
 
 ## 4. **Exploitation
+
+We can create a new jobs and in the build > Add Build step select Execute Windows batch command.
+
+And we can enter our command. I wrote whoami.
+Adn after build the jobs we can click on Conole OutPut and see the result of our command.
+
+![[Pasted image 20250422165715.png]]
 
 ## 5. **Installation
 
