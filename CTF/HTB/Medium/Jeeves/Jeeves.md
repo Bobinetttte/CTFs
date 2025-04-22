@@ -81,7 +81,6 @@ The server is extremely slow but it's okkey
 
 ![[Pasted image 20250422172207.png]]
 
-
 ## 5. **Installation
 
 ## 6. **Command and Control
