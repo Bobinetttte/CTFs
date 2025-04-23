@@ -9,11 +9,11 @@
 **OS :** #Windows
 
 ##### **Conclusion**
-**Time :** 
+**Time :** 3h39
 	**Start :** 22.04.2025 16:31
 	**Break at/to :** 22.04.2025 19:02 | 23.04.2025 17:00
 	**Finish :** 23.04.2025 18:08
-**Satisfaction :**  
+**Satisfaction :**  7/10 Because for the first flag it was easy but for the escalation privilege it was more complicated so I have to use the writeup.
 ### 1. **Reconnaissance
 
 We start with an #nmap scan
