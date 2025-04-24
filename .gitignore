@@ -1,4 +1,3 @@
-*
-!/CTF/
-!/README.md
-!/.gitignore
+echo "*" > .gitignore
+echo "!CTF/" >> .gitignore
+echo "!README.md" >> .gitignore
