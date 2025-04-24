@@ -11,7 +11,7 @@
 ##### **Conclusion**
 **Time :** 
 	**Start :** 24.04.2025 18:26
-	**Break at/to :** 24.04.2025 19:32
+	**Break at/to :** 24.04.2025 19:32 / 24.04.2025 20:15
 	**Finish :**
 **Satisfaction :**  
 ### 1. **Reconnaissance**
@@ -142,9 +142,12 @@ result: 0 Success
 ```
 
 By decoding the password with base64 have have this :
-`{crypt}$6$xJxPjT0M$1m8kM00CJYCAgzT4qz8TQwyGFQvk3boaymuAmMZCOfm3OA7OKunLZZlqytUp2dun509OBE2xwX/QEfjdRQzgn1`
+`$6$xJxPjT0M$1m8kM00CJYCAgzT4qz8TQwyGFQvk3boaymuAmMZCOfm3OA7OKunLZZlqytUp2dun509OBE2xwX/QEfjdRQzgn1`
 
 So lets decrypt it with john :
+
+But the crack is impossible so let's try sniffing with tcpdump.
+
 
 ## 2. **Weaponization**
 
