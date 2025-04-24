@@ -14,17 +14,17 @@
 	**Break at/to :** 
 	**Finish :**
 **Satisfaction :** 
-### 1. **Reconnaissance
+### 1. **Reconnaissance**
 
-## 2. **Weaponization
+## 2. **Weaponization**
 
-## 3. **Delivery
+## 3. **Delivery**
 
-## 4. **Exploitation
+## 4. **Exploitation**
 
-## 5. **Installation
+## 5. **Installation**
 
-## 6. **Command and Control
+## 6. **Command and Control**
 
-## 7. **Actions on Objectives
+## 7. **Actions on Objectives**
 

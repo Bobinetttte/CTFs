@@ -2,29 +2,32 @@
 
 ## 0. **Lab infos**
 
-**Difficulty :** 
-**Name :** 
-**IP** : 
-**Objectives :** 
-**OS :** 
+**Difficulty :** medium
+**Name :** Lightweight
+**IP** : 10.129.9.153
+**Objectives :** Get the Idapuser2 flag in the home directory and the root flag in the home directory
+**OS :** Linux
 
 ##### **Conclusion**
 **Time :** 
-	**Start :** 
+	**Start :** 24.04.2025 18:03
 	**Break at/to :** 
 	**Finish :**
 **Satisfaction :**  
-### 1. **Reconnaissance
+### 1. **Reconnaissance**
 
-## 2. **Weaponization
+We start with an #nmap scan :
 
-## 3. **Delivery
 
-## 4. **Exploitation
+## 2. **Weaponization**
 
-## 5. **Installation
+## 3. **Delivery**
 
-## 6. **Command and Control
+## 4. **Exploitation**
 
-## 7. **Actions on Objectives
+## 5. **Installation**
+
+## 6. **Command and Control**
+
+## 7. **Actions on Objectives**
 
