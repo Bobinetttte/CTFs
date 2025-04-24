@@ -1,2 +1,4 @@
-!CTF/
-!README.md
+*
+!/CTF/
+!/README.md
+!/.gitignore
