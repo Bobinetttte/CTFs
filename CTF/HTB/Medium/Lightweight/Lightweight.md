@@ -45,6 +45,68 @@ PORT    STATE SERVICE VERSION
 
 Now gobuster :
 
+```BASH
+┌─[eu-dedivip-1]─[10.10.14.145]─[bobinette@htb-yrfyly7wla]─[~]
+└──╼ [★]$ gobuster dir -u http://lightweight.htb/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x html,php,log,txt,db,py,js
+===============================================================
+Gobuster v3.6
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://lightweight.htb/
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.6
+[+] Extensions:              html,php,log,txt,db,py,js
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+
+Error: error on running gobuster: unable to connect to http://lightweight.htb/: Get "http://lightweight.htb/": dial tcp 10.129.9.192:80: connect: connection refused
+```
+
+hmmm.
+
+```BASH
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/.html                (Status: 403) [Size: 207]
+/index.php            (Status: 200) [Size: 4218]
+/info.php             (Status: 200) [Size: 1727]
+[ERROR] Get "http://lightweight.htb/feed.log": dial tcp 10.129.9.192:80: connect: connection refused
+/user.php             (Status: 200) [Size: 1495]
+Progress: 1124 / 1764488 (0.06%)[ERROR] Get "http://lightweight.htb/research.db": dial tcp 10.129.9.192:80: connect: connection refused
+Progress: 1125 / 1764488 (0.06%)[ERROR] Get "http://lightweight.htb/research.log": dial tcp 10.129.9.192:80: connect: connection refused
+Progress: 1126 / 1764488 (0.06%)[ERROR] Get "http://lightweight.htb/research.txt": dial tcp 10.129.9.192:80: connect: connection refused
+Progress: 1127 / 1764488 (0.06%)[ERROR] Get "http://lightweight.htb/research.php": dial tcp 10.129.9.192:80: connect: connection refused
+Progress: 1128 / 1764488 (0.06%)[ERROR] Get "http://lightweight.htb/feedback.js": dial tcp 10.129.9.192:80: connect: connection refused
+Progress: 1129 / 1764488 (0.06%)[ERROR] Get "http://lightweight.htb/print": dial tcp 10.129.9.192:80: connect: connection refused
+Progress: 1130 / 1764488 (0.06%)[ERROR] Get "http://lightweight.htb/feedback.html": dial tcp 10.129.9.192:80: connect: connection refused
+[ERROR] Get "http://lightweight.htb/feedback.py": dial tcp 10.129.9.192:80: connect: connection refused
+Progress: 1132 / 1764488 (0.06%)[ERROR] Get "http://lightweight.htb/print.log": dial tcp 10.129.9.192:80: connect: connection refused
+Progress: 1133 / 1764488 (0.06%)[ERROR] Get "http://lightweight.htb/research.py": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+[ERROR] Get "http://lightweight.htb/research.js": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+[ERROR] Get "http://lightweight.htb/feedback": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+[ERROR] Get "http://lightweight.htb/feedback.log": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+[ERROR] Get "http://lightweight.htb/feedback.txt": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+[ERROR] Get "http://lightweight.htb/feedback.db": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+[ERROR] Get "http://lightweight.htb/print.txt": dial tcp 10.129.9.192:80: connect: connection refused
+^C
+[!] Keyboard interrupt detected, terminating.
+Progress: 1142 / 1764488 (0.06%)
+===============================================================
+Finished
+===============================================================
+```
+
+It's seem we are blocked by ip...
+
+![[Pasted image 20250424184638.png]]
+
+
 
 ## 2. **Weaponization**
 
