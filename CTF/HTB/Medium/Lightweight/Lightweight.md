@@ -106,6 +106,18 @@ It's seem we are blocked by ip...
 
 ![[Pasted image 20250424184638.png]]
 
+We can connect via ssh with `ssh 10.10.14.145@lightweight.htb` the password is `10.10.14.145`
+
+```BASH
+[10.10.14.145@lightweight ~]$ getcap -r / 2>/dev/null | grep cap_net_raw
+/usr/bin/ping = cap_net_admin,cap_net_raw+p
+/usr/sbin/mtr = cap_net_raw+ep
+/usr/sbin/arping = cap_net_raw+p
+/usr/sbin/clockdiff = cap_net_raw+p
+/usr/sbin/tcpdump = cap_net_admin,cap_net_raw+ep
+```
+
+
 
 
 ## 2. **Weaponization**
