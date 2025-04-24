@@ -142,7 +142,6 @@ result: 0 Success
 ```
 
 By decoding the password with base64 have have this :
-
 `{crypt}$6$xJxPjT0M$1m8kM00CJYCAgzT4qz8TQwyGFQvk3boaymuAmMZCOfm3OA7OKunLZZlqytUp2dun509OBE2xwX/QEfjdRQzgn1`
 
 So lets decrypt it with john :
