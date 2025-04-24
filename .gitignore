@@ -1,3 +1,0 @@
-echo "*" > .gitignore
-echo "!CTF/" >> .gitignore
-echo "!README.md" >> .gitignore
