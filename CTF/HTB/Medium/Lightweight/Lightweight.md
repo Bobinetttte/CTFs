@@ -11,7 +11,7 @@
 ##### **Conclusion**
 **Time :** 
 	**Start :** 24.04.2025 18:26
-	**Break at/to :** 
+	**Break at/to :** 24.04.2025 19:32
 	**Finish :**
 **Satisfaction :**  
 ### 1. **Reconnaissance**
@@ -141,6 +141,11 @@ result: 0 Success
 # numEntries: 1
 ```
 
+By decoding the password with base64 have have this :
+
+`{crypt}$6$xJxPjT0M$1m8kM00CJYCAgzT4qz8TQwyGFQvk3boaymuAmMZCOfm3OA7OKunLZZlqytUp2dun509OBE2xwX/QEfjdRQzgn1`
+
+So lets decrypt it with john :
 
 ## 2. **Weaponization**
 
