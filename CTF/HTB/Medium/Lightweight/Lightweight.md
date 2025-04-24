@@ -1,11 +1,11 @@
-#base 
+#medium
 
 ## 0. **Lab infos**
 
 **Difficulty :** 
 **Name :** 
 **IP** : 
-**Objectives :**
+**Objectives :** 
 **OS :** 
 
 ##### **Conclusion**
@@ -13,7 +13,7 @@
 	**Start :** 
 	**Break at/to :** 
 	**Finish :**
-**Satisfaction :** 
+**Satisfaction :**  
 ### 1. **Reconnaissance
 
 ## 2. **Weaponization
