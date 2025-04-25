@@ -118,6 +118,13 @@ We can connect via ssh with `ssh 10.10.14.145@lightweight.htb` the password is `
 ```
 
 
+## 2. **Weaponization**
+
+## 3. **Delivery**
+
+## 4. **Exploitation**
+
+
 ```BASH
 [10.10.14.145@lightweight ~]$ ldapsearch -x -H ldap://lightweight.htb -b "dc=lightweight,dc=htb" "(uid=ldapuser2)" userPassword
 # extended LDIF
@@ -147,13 +154,6 @@ By decoding the password with base64 have have this :
 So lets decrypt it with john :
 
 But the crack is impossible so let's try sniffing with tcpdump.
-
-
-## 2. **Weaponization**
-
-## 3. **Delivery**
-
-## 4. **Exploitation**
 
 ## 5. **Installation**
 
