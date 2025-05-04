@@ -1,8 +1,7 @@
-#base 
 
 ## 0. **Lab infos**
 
-**Difficulty :** 
+**Difficulty :** #base 
 **Name :** 
 **IP** : 
 **Objectives :**
